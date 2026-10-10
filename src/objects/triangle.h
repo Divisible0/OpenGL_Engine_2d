@@ -1,16 +1,9 @@
 #pragma once
 #include "config.h"
-#include "engine/mesh.h"
+#include "objects/object.h"
 
 
-struct Triangle {
-    Mesh* mesh;
-    std::vector<float> baseVertices;
-    std::vector<float> vertices;
-
+struct Triangle : Object {
     Triangle();
-    ~Triangle();
-
-    void draw();
     void update();
 };

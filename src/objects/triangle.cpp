@@ -1,34 +1,22 @@
 #include "objects/triangle.h"
 
-Triangle::Triangle() {
 
-    baseVertices = {
-        -0.5f, -0.5f,  0.0f,  1.0f, 0.0f, 0.0f, 1.0f,
-        0.5f, -0.5f,  0.0f,  0.0f, 1.0f, 0.0f, 1.0f,
-        0.0f,  0.5f,  0.0f,  0.0f, 0.0f, 1.0f, 1.0f
-    };
+Triangle::Triangle() : Object({
+    -0.5f, -0.5f,  0.0f,  1.0f, 0.0f, 0.0f, 1.0f,
+    0.5f, -0.5f,  0.0f,  0.0f, 1.0f, 0.0f, 1.0f,
+    0.0f,  0.5f,  0.0f,  0.0f, 0.0f, 1.0f, 1.0f
+}) {}
 
-    vertices = baseVertices;
 
-    mesh = new Mesh(vertices);
-}
-
-Triangle::~Triangle() {
-    delete mesh;
-}
-
-void Triangle::draw() {
-    mesh->draw();
-}
 
 void Triangle::update() {
     double t = glfwGetTime();
-    double s = 0.125 * sin(t);
-    float y = (float) s;
+    double sy = 0.125 * sin(t);
+    double sx = 0.125 * cos(t);
+    float y = (float) sy;
+    float x = (float) sx;
 
-    vertices[1] = baseVertices[1] + y;
-    vertices[8] = baseVertices[8] + y;
-    vertices[15] = baseVertices[15] + y;
+    position.y = y;
+    position.x = x;
 
-    mesh->update(vertices);
 }

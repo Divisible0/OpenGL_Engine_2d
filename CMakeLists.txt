@@ -6,7 +6,15 @@ find_package(OpenGL REQUIRED)
 find_package(glfw3 REQUIRED)
 find_package(GLEW REQUIRED)
 
-add_executable(2d_window src/main.cpp src/engine/engine.cpp src/engine/shader.cpp src/engine/mesh.cpp src/objects/triangle.cpp)
+add_executable(
+    2d_window 
+    src/main.cpp 
+    src/engine/engine.cpp 
+    src/engine/shader.cpp 
+    src/engine/mesh.cpp 
+    src/objects/triangle.cpp
+    src/objects/object.cpp
+    )
 target_include_directories(2d_window PRIVATE src)
 target_link_libraries(2d_window PRIVATE ${dependencies}) # links OpenGL, glfw3 and glew
 

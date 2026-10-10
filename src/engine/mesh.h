@@ -10,5 +10,4 @@ struct Mesh {
     ~Mesh();
 
     void draw();
-    void update(const std::vector<float>& vertices);
 };
