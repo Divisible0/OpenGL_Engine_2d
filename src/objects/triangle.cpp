@@ -9,7 +9,7 @@ Triangle::Triangle() : Object({
 
 
 
-void Triangle::update() {
+void Triangle::update(float dt) {
     double t = glfwGetTime();
     double sy = 0.125 * sin(t);
     double sx = 0.125 * cos(t);

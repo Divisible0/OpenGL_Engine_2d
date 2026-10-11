@@ -22,6 +22,7 @@ Engine::Engine() {
     }
 
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(0);
     glewExperimental = GL_TRUE;
         
     GLenum glewStatus = glewInit();
@@ -44,30 +45,40 @@ Engine::Engine() {
     //you won't believe this but this makes a triangle!
     triangle = new Triangle();
     triangle_fan = new Triangle_Fan();
+    circle = new Circle(0.25f, 32);
 }
 
 Engine::~Engine() {
     
     delete triangle;
     delete triangle_fan;
+    delete circle;
     glDeleteProgram(shader);
     glfwTerminate(); 
 }
 
 void Engine::run() {
-
+    lastFrameTime = glfwGetTime();
     while (!glfwWindowShouldClose(window)) {
+
+        float currentTime = glfwGetTime();
+        float deltaTime = currentTime - lastFrameTime;
+        deltaTime = std::min(deltaTime, 0.1f);
+        lastFrameTime = currentTime;
+
         glClear(GL_COLOR_BUFFER_BIT);
         glUseProgram(shader);
-        draw(); //completely useless but clean... er... maybe?
+        draw(deltaTime); //completely useless but clean... er... maybe?
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 }
 
-void Engine::draw() {
-    triangle->update(); //this updates the triangle every frame!
-    triangle_fan->update();
+void Engine::draw(float dt) {
+    triangle->update(dt); //this updates the triangle every frame!
+    triangle_fan->update(dt);
+    circle->update(dt);
     triangle->draw(shader); //this? you guessed it. it draws the triangle.
     triangle_fan->draw(shader);
+    circle->draw(shader);
 }

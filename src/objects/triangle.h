@@ -5,5 +5,5 @@
 
 struct Triangle : Object {
     Triangle();
-    void update();
+    void update(float dt) override;
 };

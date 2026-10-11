@@ -13,7 +13,7 @@ Triangle_Fan::Triangle_Fan() : Object({
 
 }, GL_TRIANGLE_FAN) {}
 
-void Triangle_Fan::update() {
+void Triangle_Fan::update(float dt) {
     double t = glfwGetTime();
     double s = 0.125 * sin(t * 2);
     float sc = (float) s;

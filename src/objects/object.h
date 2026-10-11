@@ -18,7 +18,7 @@ struct Object {
     void setScale(float x, float y, float z);
     void rotate(float phi, float theta, float psi);
 
-    virtual void update() {}
+    virtual void update(float dt) {}
     void draw(unsigned int shader);
 
 };

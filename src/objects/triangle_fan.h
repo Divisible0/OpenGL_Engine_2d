@@ -4,5 +4,5 @@
 
 struct Triangle_Fan : Object {
     Triangle_Fan();
-    void update();
+    void update(float dt) override;
 };
