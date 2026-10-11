@@ -1,7 +1,8 @@
 #include "engine/mesh.h"
 
-Mesh::Mesh(const std::vector<float>& vertices) {
+Mesh::Mesh(const std::vector<float>& vertices, GLenum m) {
 
+    mode = m;
     vertexCount = vertices.size() / 7;
 
     glGenVertexArrays(1, &VAO);
@@ -25,5 +26,5 @@ Mesh::~Mesh() {
 
 void Mesh::draw() {
     glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+    glDrawArrays(mode, 0, vertexCount);
 }

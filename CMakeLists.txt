@@ -12,8 +12,9 @@ add_executable(
     src/engine/engine.cpp 
     src/engine/shader.cpp 
     src/engine/mesh.cpp 
-    src/objects/triangle.cpp
     src/objects/object.cpp
+    src/objects/triangle.cpp
+    src/objects/triangle_fan.cpp
     )
 target_include_directories(2d_window PRIVATE src)
 target_link_libraries(2d_window PRIVATE ${dependencies}) # links OpenGL, glfw3 and glew

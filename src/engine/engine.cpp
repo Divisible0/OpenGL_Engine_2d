@@ -43,11 +43,13 @@ Engine::Engine() {
 
     //you won't believe this but this makes a triangle!
     triangle = new Triangle();
+    triangle_fan = new Triangle_Fan();
 }
 
 Engine::~Engine() {
     
     delete triangle;
+    delete triangle_fan;
     glDeleteProgram(shader);
     glfwTerminate(); 
 }
@@ -65,5 +67,7 @@ void Engine::run() {
 
 void Engine::draw() {
     triangle->update(); //this updates the triangle every frame!
+    triangle_fan->update();
     triangle->draw(shader); //this? you guessed it. it draws the triangle.
+    triangle_fan->draw(shader);
 }

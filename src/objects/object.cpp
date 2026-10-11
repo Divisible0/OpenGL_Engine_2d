@@ -3,8 +3,8 @@
 #include <glm/gtc/type_ptr.hpp>
 
 
-Object::Object(const std::vector<float>& vertices) {
-    mesh = new Mesh(vertices);
+Object::Object(const std::vector<float>& vertices, GLenum m) {
+    mesh = new Mesh(vertices, m);
 }
 
 Object::~Object() {

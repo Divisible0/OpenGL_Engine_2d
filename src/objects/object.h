@@ -9,7 +9,8 @@ struct Object {
     glm::vec3 scale = glm::vec3(1.0f);
     glm::vec3 rotation = glm::vec3(0.0f);
 
-    Object(const std::vector<float>& vertices);
+
+    Object(const std::vector<float>& vertices, GLenum m = GL_TRIANGLES);
     virtual ~Object();
 
     void move(float x, float y, float z);
