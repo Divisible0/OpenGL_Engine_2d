@@ -1,4 +1,6 @@
 #include "engine/engine.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 Engine::Engine() {
 
@@ -30,10 +32,6 @@ Engine::Engine() {
         std::cout << "GLEW didn't start: " << glewGetErrorString(glewStatus) << std::endl;
         exit(EXIT_FAILURE);
     }
-
-    int fbWidth, fbHeight;
-    glfwGetFramebufferSize(window, &fbWidth, &fbHeight);
-    glViewport(0, 0, fbWidth, fbHeight);
 
     glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
 
@@ -68,6 +66,7 @@ void Engine::run() {
 
         glClear(GL_COLOR_BUFFER_BIT);
         glUseProgram(shader);
+        updateProjection();
         draw(deltaTime); //completely useless but clean... er... maybe?
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -81,4 +80,16 @@ void Engine::draw(float dt) {
     triangle->draw(shader); //this? you guessed it. it draws the triangle.
     triangle_fan->draw(shader);
     circle->draw(shader);
+}
+
+void Engine::updateProjection() {
+    int width;
+    int height;
+    glfwGetFramebufferSize(window, &width, &height);
+    if (height == 0) return;
+
+    glViewport(0, 0, width, height);
+    float aspectRatio = (float)width / (float)height;
+    glm::mat4 projection = glm::ortho(-aspectRatio, aspectRatio, -1.0f, 1.0f);
+    glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 }

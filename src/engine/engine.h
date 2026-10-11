@@ -21,4 +21,5 @@ struct Engine {
 
     void run();
     void draw(float dt);
+    void updateProjection();
 };
