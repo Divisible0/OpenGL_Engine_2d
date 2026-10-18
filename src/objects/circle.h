@@ -4,9 +4,9 @@
 
 
 struct Circle : Object {
-    Circle(float radius, int edges);
+    Circle(float x, float y, float z, float radius, int edges);
     void update(float dt) override;
 
 private:
-    static std::vector<float> defVertices(float radius, int edges);
+    static std::vector<float> defVertices(float x, float y, float z, float radius, int edges);
 };

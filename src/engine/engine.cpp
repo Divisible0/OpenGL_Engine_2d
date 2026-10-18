@@ -40,17 +40,16 @@ Engine::Engine() {
         "../shaders/fragment.txt"
     );
 
-    //you won't believe this but this makes a triangle!
-    triangle = new Triangle();
-    triangle_fan = new Triangle_Fan();
-    circle = new Circle(0.25f, 32);
+    // triangle = new Triangle();
+    // triangle_fan = new Triangle_Fan();
+    circle1 = new Circle(0.0f, 0.0f, 0.0f, 0.25f, 6);
 }
 
 Engine::~Engine() {
     
-    delete triangle;
-    delete triangle_fan;
-    delete circle;
+    // delete triangle;
+    // delete triangle_fan;
+    delete circle1;
     glDeleteProgram(shader);
     glfwTerminate(); 
 }
@@ -74,12 +73,12 @@ void Engine::run() {
 }
 
 void Engine::draw(float dt) {
-    triangle->update(dt); //this updates the triangle every frame!
-    triangle_fan->update(dt);
-    circle->update(dt);
-    triangle->draw(shader); //this? you guessed it. it draws the triangle.
-    triangle_fan->draw(shader);
-    circle->draw(shader);
+    // triangle->update(dt);
+    // triangle_fan->update(dt);
+    circle1->update(dt);
+    // triangle->draw(shader);
+    // triangle_fan->draw(shader);
+    circle1->draw(shader);
 }
 
 void Engine::updateProjection() {

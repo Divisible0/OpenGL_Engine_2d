@@ -9,7 +9,7 @@ struct Engine {
     GLFWwindow* window;
     Triangle* triangle;
     Triangle_Fan* triangle_fan;
-    Circle* circle;
+    Circle* circle1;
 
     int WIDTH = 800;
     int HEIGHT = 600;
