@@ -33,6 +33,7 @@ Engine::Engine() {
         exit(EXIT_FAILURE);
     }
 
+    glEnable(GL_DEPTH_TEST);
     glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
 
     shader = make_shader(
@@ -43,6 +44,7 @@ Engine::Engine() {
     // triangle = new Triangle();
     // triangle_fan = new Triangle_Fan();
     circle1 = new Circle(0.0f, 0.0f, 0.0f, 0.25f, 6);
+    circle2 = new Circle(0.3f, 0.3f, 0.3f, 0.3f, 6);
 }
 
 Engine::~Engine() {
@@ -63,7 +65,7 @@ void Engine::run() {
         deltaTime = std::min(deltaTime, 0.1f);
         lastFrameTime = currentTime;
 
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glUseProgram(shader);
         updateProjection();
         draw(deltaTime); //completely useless but clean... er... maybe?
@@ -76,9 +78,11 @@ void Engine::draw(float dt) {
     // triangle->update(dt);
     // triangle_fan->update(dt);
     circle1->update(dt);
+    // circle2->update(dt);
     // triangle->draw(shader);
     // triangle_fan->draw(shader);
     circle1->draw(shader);
+    circle2->draw(shader);
 }
 
 void Engine::updateProjection() {
@@ -89,8 +93,8 @@ void Engine::updateProjection() {
 
     glViewport(0, 0, width, height);
     float aspectRatio = (float)width / (float)height;
-    glm::mat4 projection = glm::ortho(-aspectRatio, aspectRatio, -1.0f, 1.0f, 0.1f, 100.0f);
-    glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), aspectRatio, 0.1f, 100.0f);
+    glm::mat4 view = glm::lookAt(cameraPos, glm::vec3(0.0f, 0.0f, 0.0f), cameraUp);
     glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 }
