@@ -1,0 +1,5 @@
+- Add Camera (movable)
+- Add 3d with scaling
+- 3d Polygon
+- Config file
+- Import .obj files
