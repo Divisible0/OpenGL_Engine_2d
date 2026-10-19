@@ -43,15 +43,12 @@ Engine::Engine() {
 
     // triangle = new Triangle();
     // triangle_fan = new Triangle_Fan();
-    circle1 = new Circle(0.0f, 0.0f, 0.0f, 0.25f, 6);
-    circle2 = new Circle(0.3f, 0.3f, 0.3f, 0.3f, 6);
 }
 
 Engine::~Engine() {
     
     // delete triangle;
     // delete triangle_fan;
-    delete circle1;
     glDeleteProgram(shader);
     glfwTerminate(); 
 }
@@ -77,12 +74,9 @@ void Engine::run() {
 void Engine::draw(float dt) {
     // triangle->update(dt);
     // triangle_fan->update(dt);
-    circle1->update(dt);
-    // circle2->update(dt);
     // triangle->draw(shader);
     // triangle_fan->draw(shader);
-    circle1->draw(shader);
-    circle2->draw(shader);
+
 }
 
 void Engine::updateProjection() {

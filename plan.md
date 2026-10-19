@@ -2,4 +2,4 @@
 - Add 3d with scaling
 - 3d Polygon
 - Config file
-- Import .obj files
+- Import .obj files (make a python script that turns the .obj into vertices)

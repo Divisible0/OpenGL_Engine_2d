@@ -3,8 +3,8 @@
 #include "objects/object.h"
 
 
-struct Circle : Object {
-    Circle(float x, float y, float z, float radius, int edges);
+struct Polygon : Object {
+    Polygon(float x, float y, float z, float radius, int edges);
     void update(float dt) override;
 
 private:

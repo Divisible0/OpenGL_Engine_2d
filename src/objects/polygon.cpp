@@ -1,7 +1,7 @@
-#include "objects/circle.h"
+#include "objects/polygon.h"
 
 
-std::vector<float> Circle::defVertices(float x, float y, float z, float radius, int edges) {
+std::vector<float> Polygon::defVertices(float x, float y, float z, float radius, int edges) {
 
     std::vector<float> vertices = {}; //origin
 
@@ -31,10 +31,10 @@ std::vector<float> Circle::defVertices(float x, float y, float z, float radius, 
     return vertices;
 }
 
-Circle::Circle(float x, float y, float z, float radius, int edges)
+Polygon::Polygon(float x, float y, float z, float radius, int edges)
     : Object(defVertices(x, y, z, radius, edges), GL_TRIANGLE_FAN) {}
 
-void Circle::update(float dt) {
+void Polygon::update(float dt) {
     double t = glfwGetTime();
     double s = sin(t * 2);
     float sc = (float) s;
